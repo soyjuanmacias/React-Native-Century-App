@@ -6,53 +6,73 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  Button
 } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 type Props = {};
 export default class App extends Component<Props> {
+  onPressAccessBtn = () => {
+    console.log('Hola')
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('./app/assets/images/logo-adidas-white.png')}
+            style={styles.logo}
+          />
+        </View>
+        <View style={styles.subtitleText}>
+          <Text style={styles.subtitleTextInner}> Adidas Hackathon Madrid </Text>
+        </View>
+        <View style={styles.btnAccess}>
+          <Button
+            onPress={this.onPressAccessBtn}
+            title="Acceder"
+            color="#7c72ff"
+          />
+        </View>
+      </View >
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'grey',
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    width: '100%',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  logoContainer: {
+    flex: 2,
+    justifyContent: 'flex-end',
+    backgroundColor: 'red',
+    paddingBottom: 25,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  logo: {
+    width: 220,
+    height: 220,
+    alignItems: 'flex-end',
   },
+  subtitleText: {
+    flex: 1,
+    backgroundColor: 'blue',
+  },
+  subtitleTextInner: {
+    fontFamily: 'Cachin',
+    fontSize: 24,
+    color: 'white',
+  },
+  btnAccess: {
+    flex: 1,
+    backgroundColor: 'yellow',
+    justifyContent: 'center',
+  }
 });
