@@ -6,29 +6,25 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { httpService } from '../services';
 
-export class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
-  static navigationOptions = {
-    title: 'Dashboard',
-  };
-  _openCamera = () => {
-    const {
-      navigate
-    } = this.props.navigation;
-    navigate('Upload')
-  }
-  _showPlayers = () => {
+export class Upload extends Component {
+  _onPressUploadBtn = () => {
+    httpService.uploadImage()
+      .then((res) => {
+        
+      })
+      .catch((err) => {
 
-  }
-  _showTeam = () => {
-
+      })
   }
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require('../assets/images/gradient-background.png')}
+          style={styles.backgroundImg}
+        />
         <View style={styles.headerContainer}>
           <View style={styles.menuContainer}>
             <View>
@@ -59,38 +55,21 @@ export class Dashboard extends Component {
             style={styles.backgroundImg}
           />
         </View>
-        <View style={styles.btnLayout}>
-          <TouchableOpacity
-            style={[styles.buttonContainer, { backgroundColor: '#8477ff' }]}
-            onPress={this._openCamera}
-            >
-          {/* TODO: Cambiar los iconos por iconos de verdad */}
-            <Image 
-              source={require('../assets/images/logo-adidas.png')}
-              style={styles.buttonIcon}
+        <View style={styles.pageLayout}>
+          <View style={styles.imgContainer}>
+            <Image
+              source={require('../assets/images/cristiano.png')}
+              style={styles.img}
             />
-            <Text style={styles.buttonText}>Capturar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.buttonContainer, { backgroundColor: '#0ae299'}]}
-            onPress={this._showPlayers}
+          </View>
+          <View style={styles.btnUpload}>
+            <TouchableOpacity
+              style={styles.btnUploadInner}
+              onPress={this._onPressUploadBtn}
             >
-            <Image 
-              source={require('../assets/images/logo-adidas.png')}
-              style={styles.buttonIcon}
-            />
-            <Text style={styles.buttonText}>Jugadores</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.buttonContainer, { backgroundColor: '#6eccfc'}]}
-            onPress={this._showTeam}
-            >
-            <Image 
-              source={require('../assets/images/logo-adidas.png')}
-              style={styles.buttonIcon}
-            />
-            <Text style={styles.buttonText}>Equipo</Text>
-          </TouchableOpacity>
+              <Text style={{ color: '#7c72ff', fontSize: 22, fontWeight: 'bold', opacity: 1 }}>Enviar</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -104,6 +83,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     backgroundColor: 'white',
+  },
+  backgroundImg: {
+    zIndex: -1,
+    position: 'absolute',
   },
   headerContainer: {
     flex: 2,
@@ -142,27 +125,34 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
   },
-  btnLayout: {
+  pageLayout: {
     flex: 5,
     width: '100%',
     alignItems: 'center',
   },
-  buttonContainer: {
+  imgContainer: {
+    flex: 3,
     width: '80%',
-    height: '25%',
-    marginBottom: 20,
+    height: '80%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
   },
-  buttonIcon: {
-    width: 40,
-    height: 40,
-    marginBottom: 10,
+  btnUpload: {
+    flex: 1,
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    width: '100%',
+    paddingHorizontal: 50
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  }, 
+  btnUploadInner: {
+    backgroundColor: 'white',
+    opacity: 0.9,
+    borderRadius: 150,
+    padding: 20,
+    alignItems: 'center',
+  },
+  img: {
+    width: 300,
+    height: 300,
+  },
 });
