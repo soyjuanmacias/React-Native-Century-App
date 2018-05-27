@@ -72,11 +72,11 @@ export class Result extends Component {
               </View>
             </View>
             <View style={styles.playerResultContainer}>
-              <Text>La conclusión que hemos extraido después de pasar por nuestra herramienta de machine learning es que </Text>
+              <Text style={{fontSize: 18}}>La conclusión que hemos extraido después de pasar por nuestra herramienta de machine learning es que </Text>
               <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#0a0a39' }}>{this._getResult()}</Text>
             </View>
             <View style={styles.playerGraphicContainer}>
-              <Text >Con una probabilidad de un</Text>
+              <Text style={{fontSize: 18}}>Y tenemos una seguridad del</Text>
               <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'black'}}>{this._getPercentage()}%</Text>
             </View>
             <View style={styles.btnBack}>
