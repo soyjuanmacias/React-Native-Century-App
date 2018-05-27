@@ -8,7 +8,15 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { httpService } from '../services';
-import {Header} from './header';
+import { Header } from './header';
+
+const cristianoDiccionary = {
+  0: require('../assets/images/cristiano-0.png'),
+  1: require('../assets/images/cristiano-1.png'),
+  2: require('../assets/images/cristiano-2.png'),
+  3: require('../assets/images/cristiano-3.png'),
+  4: require('../assets/images/cristiano-4.png'),
+}
 
 export class Upload extends Component {
   constructor(props) {
@@ -19,7 +27,7 @@ export class Upload extends Component {
   }
   componentWillMount() {
     const options = [1, 2, 3, 4, 5];
-    this._random = Math.floor(Math.random() * random.length - 1)
+    this._random = Math.floor(Math.random() * options.length - 1)
   }
   _onPressUploadBtn = () => {
     const {
@@ -28,25 +36,39 @@ export class Upload extends Component {
     this.setState({ loading: true });
     httpService.uploadImage(this._random)
       .then((res) => {
-        navigate('Result', {
-          result: res,
-        })
-        this.setState({ loading: false })
+        console.log('👍🏻 Recibo respuesta de uploadImage')
+        console.log(res[0].faceAttributes.emotion);
+        httpService.getPercentage(res[0].faceAttributes.emotion)
+          .then(res => {
+            console.log('👍🏻 Recibo respuesta de getPorcentage');
+            console.log(res);
+            // navigate('Result', {
+            //   result: res,
+            // })
+            // this.setState({ loading: false })
+          })
+          .catch(err => {
+            console.log('Error');
+            console.log(err);
+          })
       })
       .catch((err) => {
+        console.log(err)
+        console.log('👎🏻 Error en componente upload')
         this.setState({ loading: false })
         // En caso de subida incorrecta.
       })
   }
-  this._getRandom = () => {
-    return this._random;
+  _getSource = () => {
+    const index = this._random;
+    return cristianoDiccionary[index];
   }
   _renderImage() {
     return (
       <Fragment>
         <View style={styles.imgContainer}>
           <Image
-            source={require('../assets/images/cristiano-' + this._getRandom() + '.png`)}
+            source={this._getSource()}
             style={styles.img}
           />
         </View>
@@ -58,7 +80,7 @@ export class Upload extends Component {
             <Text style={{ color: '#7c72ff', fontSize: 22, fontWeight: 'bold', opacity: 1 }}>Enviar</Text>
           </TouchableOpacity>
         </View>
-        </Fragment>
+      </Fragment>
     )
   }
   _renderSpinner() {
