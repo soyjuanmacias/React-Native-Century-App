@@ -10,69 +10,16 @@ import {
   Text,
   View,
   Image,
-  Button
+  TouchableOpacity
 } from 'react-native';
 
-type Props = {};
-export default class App extends Component<Props> {
-  onPressAccessBtn = () => {
-    console.log('Hola')
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('./app/assets/images/logo-adidas-white.png')}
-            style={styles.logo}
-          />
-        </View>
-        <View style={styles.subtitleText}>
-          <Text style={styles.subtitleTextInner}> Adidas Hackathon Madrid </Text>
-        </View>
-        <View style={styles.btnAccess}>
-          <Button
-            onPress={this.onPressAccessBtn}
-            title="Acceder"
-            color="#7c72ff"
-          />
-        </View>
-      </View >
-    );
-  }
-}
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'grey',
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-  },
-  logoContainer: {
-    flex: 2,
-    justifyContent: 'flex-end',
-    backgroundColor: 'red',
-    paddingBottom: 25,
-  },
-  logo: {
-    width: 220,
-    height: 220,
-    alignItems: 'flex-end',
-  },
-  subtitleText: {
-    flex: 1,
-    backgroundColor: 'blue',
-  },
-  subtitleTextInner: {
-    fontFamily: 'Cachin',
-    fontSize: 24,
-    color: 'white',
-  },
-  btnAccess: {
-    flex: 1,
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
-  }
-});
+import { Main, Dashboard } from './app/components';
+
+export default App = StackNavigator({
+  Home: { screen: Main },
+  Dashboard: { screen: Dashboard },
+}, { headerMode: 'none' });
