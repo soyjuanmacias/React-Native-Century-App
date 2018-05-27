@@ -14,7 +14,7 @@ export class Main extends Component {
   static navigationOptions = {
     title: 'Welcome',
   };
-  onPressAccessBtn = () => {
+  _onPressAccessBtn = () => {
     const {
       navigate
     } = this.props.navigation;
@@ -42,7 +42,7 @@ export class Main extends Component {
         <View style={styles.btnAccess}>
           <TouchableOpacity
             style={styles.btnAccessInner}
-            onPress={this.onPressAccessBtn}
+            onPress={this._onPressAccessBtn}
           >
             <Text style={{ color: '#7c72ff', fontSize: 22, fontWeight: 'bold', opacity: 1}}>Acceder</Text>
           </TouchableOpacity>
