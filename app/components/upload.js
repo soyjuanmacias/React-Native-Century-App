@@ -12,7 +12,7 @@ import { Header } from './header';
 
 const cristianoDiccionary = {
   0: require('../assets/images/cristiano-0.png'),
-  1: require('../assets/images/cristiano-1.png'),
+  1: require('../assets/images/cristiano-3.png'),
   2: require('../assets/images/cristiano-2.png'),
   3: require('../assets/images/cristiano-3.png'),
   4: require('../assets/images/cristiano-4.png'),
@@ -36,16 +36,15 @@ export class Upload extends Component {
     this.setState({ loading: true });
     httpService.uploadImage(this._random)
       .then((res) => {
-        console.log('👍🏻 Recibo respuesta de uploadImage')
-        console.log(res[0].faceAttributes.emotion);
         httpService.getPercentage(res[0].faceAttributes.emotion)
           .then(res => {
-            console.log('👍🏻 Recibo respuesta de getPorcentage');
-            console.log(res);
-            // navigate('Result', {
-            //   result: res,
-            // })
-            // this.setState({ loading: false })
+            return res;
+          })
+          .then(res => {
+            navigate('Result', {
+              result: res,
+            })
+            this.setState({ loading: false })
           })
           .catch(err => {
             console.log('Error');
@@ -85,8 +84,8 @@ export class Upload extends Component {
   }
   _renderSpinner() {
     return (
-      <View>
-        <Text>Cargando...</Text>
+      <View style={{alignContent: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+        <Text style={{fontSize: 24}}>Cargando...</Text>
       </View>
     )
   }

@@ -15,8 +15,24 @@ export class Result extends Component {
     const { navigate } = this.props.navigation;
     navigate('Dashboard');
   }
+  _getResult = () => {
+    const {
+      result
+    } = this.props.navigation.state.params;
+    if (result[0] === "no") {
+      return '¡No va a marcar!';
+    }
+    return '¡Va a ser un golazo!';
+  }
+  _getPercentage = () => {
+    const percent = this.props.navigation.state.params.result[1];
+    return Number(Math.floor(percent)).toFixed(2);
+  }
   render() {
-    const { result } = this.props.navigation.state.params;
+    const {
+      result
+    } = this.props.navigation.state.params;
+    console.log(result);
     return (
       <View style={styles.container}>
         <Image
@@ -57,11 +73,11 @@ export class Result extends Component {
             </View>
             <View style={styles.playerResultContainer}>
               <Text>La conclusión que hemos extraido después de pasar por nuestra herramienta de machine learning es que </Text>
-              <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#0a0a39' }}>{result.result}</Text>
+              <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#0a0a39' }}>{this._getResult()}</Text>
             </View>
             <View style={styles.playerGraphicContainer}>
-              <Text >Con una probabilidad de</Text>
-              <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{result.percentage}</Text>
+              <Text >Con una probabilidad de un</Text>
+              <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'black'}}>{this._getPercentage()}%</Text>
             </View>
             <View style={styles.btnBack}>
               <TouchableOpacity
