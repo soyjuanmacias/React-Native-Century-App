@@ -17,12 +17,16 @@ export class Upload extends Component {
       loading: false,
     }
   }
+  componentWillMount() {
+    const options = [1, 2, 3, 4, 5];
+    this._random = Math.floor(Math.random() * random.length - 1)
+  }
   _onPressUploadBtn = () => {
     const {
       navigate
     } = this.props.navigation;
     this.setState({ loading: true });
-    httpService.uploadImage()
+    httpService.uploadImage(this._random)
       .then((res) => {
         navigate('Result', {
           result: res,
@@ -34,12 +38,15 @@ export class Upload extends Component {
         // En caso de subida incorrecta.
       })
   }
+  this._getRandom = () => {
+    return this._random;
+  }
   _renderImage() {
     return (
       <Fragment>
         <View style={styles.imgContainer}>
           <Image
-            source={require('../assets/images/cristiano.png')}
+            source={require('../assets/images/cristiano-' + this._getRandom() + '.png`)}
             style={styles.img}
           />
         </View>

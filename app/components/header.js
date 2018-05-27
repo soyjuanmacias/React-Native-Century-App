@@ -20,7 +20,7 @@ export class Header extends Component {
             </View>
             <View>
               <Image
-                source={require('../assets/images/logo-adidas.png')}
+                source={require('../assets/images/icon-menu.png')}
                 style={styles.menuImg}
               />
             </View>
@@ -28,12 +28,12 @@ export class Header extends Component {
           <View style={styles.userContainer}>
             <View style={styles.avatarContainer}>
               <Image
-                source={require('../assets/images/logo-adidas.png')}
+                source={require('../assets/images/icon-avatar.png')}
                 style={styles.avatarImg}
               />
             </View>
             <View>
-              <Text style={styles.usernameText}>Usuario</Text>
+              <Text style={styles.usernameText}>Hackvatar</Text>
             </View>
           </View>
           <Image
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   menuImg: {
     width: 20,
     height: 20,
-    backgroundColor: 'black',
   },
   userContainer: {
     flexDirection: 'row',
@@ -80,7 +79,6 @@ const styles = StyleSheet.create({
   avatarImg: {
     width: 40,
     height: 40,
-    backgroundColor: 'black',
   },
   usernameText: {
     fontSize: 20,

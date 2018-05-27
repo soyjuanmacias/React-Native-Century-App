@@ -13,7 +13,7 @@ import { Header } from './header';
 export class Result extends Component {
   _onPressBackBtn = () => {
     const { navigate } = this.props.navigation;
-    navigate('Home');
+    navigate('Dashboard');
   }
   render() {
     const { result } = this.props.navigation.state.params;
@@ -31,7 +31,7 @@ export class Result extends Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', }}>
                   <View style={{ paddingRight: 25 }}>
                     <Image
-                      source={require('../assets/images/logo-adidas.png')}
+                      source={require(`../assets/images/cristiano-avatar.png`)}
                       style={styles.userAvatar}
                     />
                   </View>
@@ -42,21 +42,21 @@ export class Result extends Component {
               </View>
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', }}>
                 <Image
-                  source={require('../assets/images/logo-adidas.png')}
+                  source={require('../assets/images/icon-team-black.png')}
                   style={styles.iconInfo}
                 />
                 <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#aeabd5' }}>Real Madrid</Text>
               </View>
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', }}>
                 <Image
-                  source={require('../assets/images/logo-adidas.png')}
+                  source={require('../assets/images/icon-birthday.png')}
                   style={styles.iconInfo}
                 />
                 <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#aeabd5' }}>33 años</Text>
               </View>
             </View>
             <View style={styles.playerResultContainer}>
-              <Text>La conclusión que hemos extraido después de pasar por nuestra herramienta de machine learning es que: </Text>
+              <Text>La conclusión que hemos extraido después de pasar por nuestra herramienta de machine learning es que </Text>
               <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#0a0a39' }}>{result.result}</Text>
             </View>
             <View style={styles.playerGraphicContainer}>
@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 10,
-    backgroundColor: 'black',
   },
   btnBack: {
     width: '80%',

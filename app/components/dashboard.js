@@ -39,7 +39,7 @@ export class Dashboard extends Component {
             >
           {/* TODO: Cambiar los iconos por iconos de verdad */}
             <Image 
-              source={require('../assets/images/logo-adidas.png')}
+              source={require('../assets/images/icon-camera.png')}
               style={styles.buttonIcon}
             />
             <Text style={styles.buttonText}>Capturar</Text>
@@ -49,7 +49,7 @@ export class Dashboard extends Component {
             onPress={this._showPlayers}
             >
             <Image 
-              source={require('../assets/images/logo-adidas.png')}
+              source={require('../assets/images/icon-team.png')}
               style={styles.buttonIcon}
             />
             <Text style={styles.buttonText}>Jugadores</Text>
@@ -59,10 +59,10 @@ export class Dashboard extends Component {
             onPress={this._showTeam}
             >
             <Image 
-              source={require('../assets/images/logo-adidas.png')}
+              source={require('../assets/images/icon-developer.png')}
               style={styles.buttonIcon}
             />
-            <Text style={styles.buttonText}>Equipo</Text>
+            <Text style={styles.buttonText}>Developers</Text>
           </TouchableOpacity>
         </View>
       </View>
