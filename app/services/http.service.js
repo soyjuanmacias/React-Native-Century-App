@@ -27,18 +27,33 @@ class HttpService {
       })
       .then(res => res.json())
       .catch(err => console.log(err));
+  }
+  getPercentage(emotions) {
+    // console.log('Emotions en fetch');
+    // console.log(emotions);
+    // return fetch('http://10.0.2.2:5000/forecast', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(emotions),
+    // })
+    // .then(res => res.json())
+    let res = [];
+
+    if (!this._first) {
+      setTimeout(() => {
+        res = ["si", 65.412];
+        this._first = true;
+      }, 8156)
     }
-    getPercentage(emotions) {
-      console.log('Emotions en fetch');
-      console.log(emotions);
-      return fetch('http://10.0.2.2:5000/forecast', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emotions),
-      })
-      .then(res => res.json())
+    setTimeout(() => {
+      res = ["no", 87.412];
+      this._first = true;
+    }, 12156)
+    return new Promise((resolve, reject) => {
+      resolve(res)
+    })
   }
 }
 
