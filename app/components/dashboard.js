@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import {Header} from './header';
+
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -29,36 +31,7 @@ export class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <View style={styles.menuContainer}>
-            <View>
-              <Text>
-                Centaury Emotion Recognition
-              </Text>
-            </View>
-            <View>
-              <Image
-                source={require('../assets/images/logo-adidas.png')}
-                style={styles.menuImg}
-              />
-            </View>
-          </View>
-          <View style={styles.userContainer}>
-            <View style={styles.avatarContainer}>
-              <Image
-                source={require('../assets/images/logo-adidas.png')}
-                style={styles.avatarImg}
-              />
-            </View>
-            <View>
-              <Text style={styles.usernameText}>Usuario</Text>
-            </View>
-          </View>
-          <Image
-            source={require('../assets/images/header-background.png')}
-            style={styles.backgroundImg}
-          />
-        </View>
+        <Header />
         <View style={styles.btnLayout}>
           <TouchableOpacity
             style={[styles.buttonContainer, { backgroundColor: '#8477ff' }]}

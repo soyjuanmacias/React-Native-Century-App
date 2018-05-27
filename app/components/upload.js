@@ -1,22 +1,65 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import { httpService } from '../services';
+import {Header} from './header';
 
 export class Upload extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+    }
+  }
   _onPressUploadBtn = () => {
+    const {
+      navigate
+    } = this.props.navigation;
+    this.setState({ loading: true });
     httpService.uploadImage()
       .then((res) => {
-        
+        navigate('Result', {
+          result: res,
+        })
+        this.setState({ loading: false })
       })
       .catch((err) => {
-
+        this.setState({ loading: false })
+        // En caso de subida incorrecta.
       })
+  }
+  _renderImage() {
+    return (
+      <Fragment>
+        <View style={styles.imgContainer}>
+          <Image
+            source={require('../assets/images/cristiano.png')}
+            style={styles.img}
+          />
+        </View>
+        <View style={styles.btnUpload}>
+          <TouchableOpacity
+            style={styles.btnUploadInner}
+            onPress={this._onPressUploadBtn}
+          >
+            <Text style={{ color: '#7c72ff', fontSize: 22, fontWeight: 'bold', opacity: 1 }}>Enviar</Text>
+          </TouchableOpacity>
+        </View>
+        </Fragment>
+    )
+  }
+  _renderSpinner() {
+    return (
+      <View>
+        <Text>Cargando...</Text>
+      </View>
+    )
   }
   render() {
     return (
@@ -25,51 +68,9 @@ export class Upload extends Component {
           source={require('../assets/images/gradient-background.png')}
           style={styles.backgroundImg}
         />
-        <View style={styles.headerContainer}>
-          <View style={styles.menuContainer}>
-            <View>
-              <Text>
-                Centaury Emotion Recognition
-              </Text>
-            </View>
-            <View>
-              <Image
-                source={require('../assets/images/logo-adidas.png')}
-                style={styles.menuImg}
-              />
-            </View>
-          </View>
-          <View style={styles.userContainer}>
-            <View style={styles.avatarContainer}>
-              <Image
-                source={require('../assets/images/logo-adidas.png')}
-                style={styles.avatarImg}
-              />
-            </View>
-            <View>
-              <Text style={styles.usernameText}>Usuario</Text>
-            </View>
-          </View>
-          <Image
-            source={require('../assets/images/header-background.png')}
-            style={styles.backgroundImg}
-          />
-        </View>
+        <Header />
         <View style={styles.pageLayout}>
-          <View style={styles.imgContainer}>
-            <Image
-              source={require('../assets/images/cristiano.png')}
-              style={styles.img}
-            />
-          </View>
-          <View style={styles.btnUpload}>
-            <TouchableOpacity
-              style={styles.btnUploadInner}
-              onPress={this._onPressUploadBtn}
-            >
-              <Text style={{ color: '#7c72ff', fontSize: 22, fontWeight: 'bold', opacity: 1 }}>Enviar</Text>
-            </TouchableOpacity>
-          </View>
+          {this.state.loading ? this._renderSpinner() : this._renderImage()}
         </View>
       </View>
     );
